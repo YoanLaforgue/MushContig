@@ -2,13 +2,13 @@
 
 > `MushContig` est une méthodologie conçue pour surmonter les défis de l'identification fongique dans les échantillons complexes. En se concentrant sur le long fragment ribosomique 18S-ITS-LSU, ce pipeline offre une résolution taxonomique supérieure à celle des approches standards basées uniquement sur le gène 18S.
 
-Développé dans un cadre clinique, il vise à fournir un diagnostic rapide et précis, offrant une alternative puissante à la culture fongique traditionnelle, notamment pour les échantillons poly-fongiques.
+Développé dans un cadre clinique, il vise à fournir un diagnostic rapide et précis, offrant une alternative à la culture fongique traditionnelle, notamment pour les échantillons poly-fongiques.
 
 ---
 
 ## Contexte
 
-Le règne fongique reste l'un des règnes du vivant les moins caractérisés sur le plan génomique. Les bases de données publiques, bien que vastes, manquent souvent de génomes complets, se limitant principalement à des marqueurs courts comme la région 18S. Cette limitation pose un problème majeur : la faible distance génétique entre certaines espèces fongiques proches rend leur distinction difficile sur la base de ce seul marqueur.
+Le règne fongique reste l'un des règnes du vivant les moins caractérisés sur le plan génomique. Les bases de données publiques, bien que vastes, manquent souvent de génomes complets, se limitant principalement à des marqueurs courts comme la région 18S. Cette limite pose un problème majeur : la faible distance génétique entre certaines espèces fongiques proches rend leur distinction difficile sur la base de ce seul marqueur.
 
 Pour pallier ces limites, `MushContig` cible une région plus informative :
 *   **18S rRNA** : Gène conservé, utile pour une classification à des niveaux taxonomiques élevés.
@@ -70,6 +70,8 @@ kraken2 \
      --unclassified-out "$.../Unclassified.fastq" \
      "$.../$numBarcode.fastq"
 ```
+Les *reads* non classifiés (`Unclassified_non_human.fastq`) correspondent aux séquences non humaines qui seront utilisées pour la suite de l'analyse.
+
 ### STEP 3 : ONT Adapters Trim
 
 ```bash
