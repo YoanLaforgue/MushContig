@@ -157,7 +157,7 @@ Exemple :
 Il est fort à parier que le principal défi pour la mycologie au cours de la prochaine décennie sera le séquençage d’un large panel de champignons, dans le but de constituer des bases de données plus robustes et représentatives de la diversité fongique.
 Pour l’heure, une approche dite de novo, sans biais dans la reconstruction génomique, couplée à une comparaison des séquences sur différentes bases de données, constitue une alternative pertinente. Bien qu’imparfaite, cette méthode présente une fiabilité supérieure à celle reposant uniquement sur l’identification de la région 18S, laquelle ne permet généralement pas une identification au niveau de l’espèce.
 
-`MushContig` s’inscrit dans une niche en analysant la région 18S–ITS–LSU, répondant ainsi à une demande clinique spécifique. Néanmoins, ce pipeline reste perfectible et n’est actuellement pas conçu pour le traitement à haut débit. Il est amené à évoluer avec son temps, en parallèle des avancées techniques et technologiques.
+`MushContig` s’inscrit dans une niche en analysant la région 18S–ITS–LSU, répondant ainsi à une demande clinique spécifique.
 
 La `communauté Nanopore` est particulièrement active et propose régulièrement des outils bio-informatiques innovants. Par ailleurs, les progrès rapides du basecalling dans ce domaine, ainsi que l’émergence d’outils de correction de lectures (read correction), tendent à rapprocher la qualité des données `ONT` de celle obtenue avec la technologie `Illumina`.
 
