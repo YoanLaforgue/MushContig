@@ -43,7 +43,9 @@ Pour pallier ces limites, `MushContig` exploite la technologie long-read pour s�
 
 Note : Les variables (`$path/...` , `$nb_threads`, `$numBarcode`) doivent être adaptés à votre configuration locale.
 
-### Étape 1 : Contrôle Qualité Initial (QC) des *Reads*
+Les données de séquençage utilisées pour ce tutoriel sont disponibles sur Zenodo : [18S-ITS-LSU ONT DATA](https://zenodo.org/records/18641902)
+
+### Étape 1 : Contrôle qualité initial (QC) des *reads*
 
 Évaluation de la qualité globale du run de séquençage.
 
@@ -56,7 +58,7 @@ NanoPlot -t "$nb_threads" \
         --plots dot
 ```
 
-### Étape 2 : Human Depletion
+### Étape 2 : Déplétion humaine
 
 Selon la nature de certains prélèvements cliniques, on observe parfois une population de reads humaines trop importante. C’est pourquoi il est nécessaire de réaliser une déplétion humaine informatisée.
 
@@ -70,7 +72,7 @@ kraken2 --threads "$nb_threads" --db "$Human_data_base" --confidence 0.1 \
 ```
 Les *reads* non classifiés (`Unclassified_non_human.fastq`) correspondent aux séquences non humaines qui seront utilisées pour la suite de l'analyse.
 
-### Étape 3 : Suppression des Adaptateurs ONT
+### Étape 3 : Suppression des adaptateurs ONT
 
 Utilisation de `porechop` pour supprimer les séquences d'adaptateurs résiduelles.
 
@@ -78,7 +80,7 @@ Utilisation de `porechop` pour supprimer les séquences d'adaptateurs résiduell
 porechop -i "Unclassified.fastq" -o "Unclassified_adapter_trim.fastq"
 ```
 
-### Étape 4 : Filtrage par Qualité et Longueur
+### Étape 4 : Filtrage : qualité & taille
 
 La région 18S-ITS-LSU fait ± 2700 pb.  
 
@@ -95,7 +97,7 @@ NanoFilt "Unclassified_adapter_trim.fastq" -q 15 --headcrop 10 --tailcrop 10 \
 
 Un second passage via `NanoPlot` permet de vérifier le nombre de reads restants, le N50 et la Median read quality.
 
-### Étape 6 : Assemblage des Contigs
+### Étape 6 : Assemblage des contigs
 
 Pour réaliser l’assemblage, nous utilisons `Amplicon_sorter`, un outil développé pour trier les séquences selon leur similarité et leur longueur pour générer des contigs robustes.
 
@@ -133,7 +135,7 @@ L'identification des espèces demeure l'un des défis majeurs en métagénomique
 Cette stratégie permet d'affiner le diagnostic et de se rapprocher au mieux de la réalité biologique de l'échantillon. Les *contigs* sont finalement renommés avec l'identification taxonomique la plus probable avec le script python `rename_fasta_with_taxid.py`.
 
 
-### Étape 8 : Tableau d'Abondance
+### Étape 8 : Tableau d'abondance
 
 L'abondance de chaque espèce est estimée par le ré-alignement des reads initiaux sur les contigs finaux avec `Minimap2`.
 
