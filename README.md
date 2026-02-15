@@ -1,6 +1,6 @@
 # MushContig
 
-> `MushContig` est une méthodologie conçue pour surmonter les défis de l'identification fongique dans les échantillons complexes. En se concentrant sur le long fragment 18S-ITS-LSU, ce pipeline offre une résolution taxonomique supérieure à celle des approches standards basées uniquement sur le gène 18S.
+> `MushContig` est une méthodologie conçue pour surmonter les défis de l'identification fongique dans des échantillons complexes. En se concentrant sur le long fragment 18S-ITS-LSU, ce pipeline offre une résolution taxonomique supérieure à celle des approches standards basées uniquement sur le gène 18S.
 
 Développé dans un cadre clinique, il vise à fournir un diagnostic rapide et précis, offrant une alternative à la culture fongique traditionnelle, notamment pour les échantillons poly-fongiques.
 
@@ -10,7 +10,7 @@ Développé dans un cadre clinique, il vise à fournir un diagnostic rapide et p
 
 Le règne fongique reste l'un des règnes du vivant les moins caractérisés sur le plan génomique. Les bases de données publiques, bien que vastes, manquent souvent de génomes complets, se limitant principalement à des marqueurs courts comme la région 18S. Cette limite pose un problème majeur : la faible distance génétique entre certaines espèces fongiques proches rend leur distinction difficile sur la base de ce seul marqueur.
 
-Pour pallier ces limites, `MushContig` exploite la technologie long-read pour séquencer sans fragmentation un fragment incluant:
+Pour pallier ces limites, `MushContig` exploite la technologie long-read pour séquencer sans fragmentation un fragment incluant :
 *   **18S rRNA**
 *   **ITS (Internal Transcribed Spacer)** 
 *   **LSU (Large Subunit) rRNA** 
