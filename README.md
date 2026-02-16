@@ -10,7 +10,7 @@ Développé dans un cadre clinique, il vise à fournir un diagnostic rapide et p
 
 Le règne fongique reste l'un des règnes du vivant les moins caractérisés sur le plan génomique. Les bases de données publiques, bien que vastes, manquent souvent de génomes complets, se limitant principalement à des marqueurs courts comme la région 18S. Cette limite pose un problème majeur : la faible distance génétique entre certaines espèces fongiques proches rend leur distinction difficile sur la base de ce seul marqueur.
 
-Pour pallier ces limites, `MushContig` exploite la technologie long-read pour séquencer sans fragmentation un fragment incluant :
+Pour pallier ces limites, `MushContig` exploite la technologie long-read **(Oxford Nanopore Texhnologies)**pour séquencer sans fragmentation un fragment incluant :
 *   **18S rRNA**
 *   **ITS (Internal Transcribed Spacer)** 
 *   **LSU (Large Subunit) rRNA** 
@@ -45,7 +45,7 @@ Note : Les variables (`$path/...` , `$nb_threads`, `$numBarcode`) doivent être 
 
 Les données de séquençage utilisées pour ce tutoriel sont disponibles sur Zenodo : [18S-ITS-LSU ONT DATA](https://zenodo.org/records/18641902)
 
-### Étape 1 : Contrôle qualité initial (QC) des *reads*
+### Étape 1 : Contrôle qualité initial (QC)
 
 Évaluation de la qualité globale du run de séquençage.
 
@@ -72,7 +72,7 @@ kraken2 --threads "$nb_threads" --db "$Human_data_base" --confidence 0.1 \
 ```
 Les *reads* non classifiés (`Unclassified_non_human.fastq`) correspondent aux séquences non humaines qui seront utilisées pour la suite de l'analyse.
 
-### Étape 3 : Suppression des adaptateurs ONT
+### Étape 3 : Suppression des adaptateurs
 
 Utilisation de `porechop` pour supprimer les séquences d'adaptateurs résiduelles.
 
