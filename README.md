@@ -1,6 +1,6 @@
 # MushContig
 
-> `MushContig` est une méthodologie conçue pour surmonter les défis de l'identification fongique dans des échantillons complexes. En se concentrant sur le long fragment 18S-ITS-LSU, ce pipeline offre une résolution taxonomique supérieure à celle des approches standards basées uniquement sur le gène 18S.
+> `MushContig` est une méthodologie conçue pour surmonter les défis de l'identification fongique dans des échantillons complexes. En se concentrant sur le long fragment 18S-ITS-LSU, ce pipeline offre une résolution taxonomique supérieure à celle des approches standards basées uniquement sur l'étude du gène 18S.
 
 Développé dans un cadre clinique, il vise à fournir un diagnostic rapide et précis, offrant une alternative à la culture fongique traditionnelle, notamment pour les échantillons poly-fongiques.
 
@@ -10,7 +10,7 @@ Développé dans un cadre clinique, il vise à fournir un diagnostic rapide et p
 
 Le règne fongique reste l'un des règnes du vivant les moins caractérisés sur le plan génomique. Les bases de données publiques, bien que vastes, manquent souvent de génomes complets, se limitant principalement à des marqueurs courts comme la région 18S. Cette limite pose un problème majeur : la faible distance génétique entre certaines espèces fongiques proches rend leur distinction difficile sur la base de ce seul marqueur.
 
-Pour pallier ces limites, `MushContig` exploite la technologie long-read **(Oxford Nanopore Texhnologies)**pour séquencer sans fragmentation un fragment incluant :
+Pour pallier ces limites, `MushContig` exploite la technologie long-read **(Oxford Nanopore Texhnologies)** pour séquencer sans fragmentation un fragment incluant :
 *   **18S rRNA**
 *   **ITS (Internal Transcribed Spacer)** 
 *   **LSU (Large Subunit) rRNA** 
@@ -80,22 +80,19 @@ Utilisation de `porechop` pour supprimer les séquences d'adaptateurs résiduell
 porechop -i "Unclassified.fastq" -o "Unclassified_adapter_trim.fastq"
 ```
 
-### Étape 4 : Filtrage : qualité & taille
+### Étape 4 : Filtrage sur la qualité & taille
 
-La région 18S-ITS-LSU fait ± 2700 pb.  
-
-Population > Q15 pour l’assemblage des contigs.
-
-<img width="1315" height="495" alt="Capture d’écran 2026-02-11 201808" src="https://github.com/user-attachments/assets/41fb3b50-9e17-4b31-995e-071557099940" />
-
+La région étudiée mesure environ **2 700 pb**. Nous appliquons donc un filtrage par taille afin de conserver les reads compris entre 2 300 et 3 000 pb, des valeurs qui peuvent être ajustées si nécessaire.
 
 ```bash
 NanoFilt "Unclassified_adapter_trim.fastq" -q 15 --headcrop 10 --tailcrop 10 \
          --length 2300 --maxlength 3000 > "$numBarcode.Q15.fastq"
 ```
-### Étape 5 : QC Post-filtrage
+<img width="1315" height="495" alt="Capture d’écran 2026-02-11 201808" src="https://github.com/user-attachments/assets/41fb3b50-9e17-4b31-995e-071557099940" />
 
-Un second passage via `NanoPlot` permet de vérifier le nombre de reads restants, le N50 et la Median read quality.
+### Étape 5 : Contrôle qualité post-filtrage (QC)
+
+Un second passage via `NanoPlot` permet de vérifier le nombre de reads restants, le N50 et la **Median read quality**.
 
 ### Étape 6 : Assemblage des contigs
 
@@ -103,7 +100,7 @@ Pour réaliser l’assemblage, nous utilisons `Amplicon_sorter`, un outil dével
 
 ```bash
 python3 amplicon_sorter.py -i "$numBarcode.Q15.fastq" -maxr 30000 -ldc 20 \
-        -sc $Base_Accuracy -o "Amplicon_sorter_Output"
+        -sc $Base_Accuracy -o "amplicon_sorter_output" -np $nb_threads
 ```
 
 `-maxr` ou `--maxreads` :
