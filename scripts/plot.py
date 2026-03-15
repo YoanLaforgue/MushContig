@@ -76,8 +76,7 @@ def process_taxonomy_data(input_txt, output_tsv, output_plot):
             fontsize=10,
             color='black'
         )
-    # ----------------------------------------------------------------------
-    
+        
     plt.title('Pourcentage de Reads Mappés par Taxonomie', fontsize=18)
     plt.xlabel('Pourcentage (%)', fontsize=14)
     plt.ylabel('Taxonomie', fontsize=14)
