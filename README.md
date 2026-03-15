@@ -154,8 +154,19 @@ samtools idxstats "primary.sorted.bam" > "abundance_table.txt"
 ```
 Exemple :
 
-<img width="800" height="500" alt="barcode94 plot" src="https://github.com/user-attachments/assets/50482ca6-a62a-4d34-8c7e-1a76b246ecbd" />
+<div align="center">
+  <img src="imgs/plot.png" alt="plot" width="750"/>
+  <br><br>
+  </div>
 
+<br>
+
+<div align="center">
+  <img src="imgs/rarefaction_curve.png" alt="rarefaction_curve" width="670"/>
+  <br><br>
+  </div>
+
+<br>
 
 ---
 
