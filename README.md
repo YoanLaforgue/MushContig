@@ -1,5 +1,12 @@
 # MushContig
 
+<div align="center">
+  <a href="[https://github.com/YoanLaforgue/MushContig/blob/main/logo_mushcontig.png]">
+    <img src="/logo_mushcontig.png" alt="BactoCraft" width="280"/>
+  </a>
+  <br><br>
+</div>
+
 > `MushContig` est une méthodologie conçue pour surmonter les défis de l'identification fongique dans des échantillons complexes. En se concentrant sur le long fragment 18S-ITS-LSU, ce pipeline offre une résolution taxonomique supérieure à celle des approches standards basées uniquement sur l'étude du gène 18S.
 
 Développé dans un cadre clinique, il vise à fournir un diagnostic rapide et précis, offrant une alternative à la culture fongique traditionnelle, notamment pour les échantillons poly-fongiques.
