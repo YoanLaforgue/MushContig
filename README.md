@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="[https://github.com/YoanLaforgue/MushContig/blob/main/logo_mushcontig.png]">
-    <img src="/logo_mushcontig.png" alt="BactoCraft" width="280"/>
+    <img src="/logo_mushcontig.png" alt="MushContig" width="520"/>
   </a>
   <br><br>
 </div>
