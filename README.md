@@ -60,7 +60,7 @@ Les données de séquençage utilisées pour ce tutoriel sont disponibles sur Ze
 NanoPlot -t "$nb_threads" \
         --fastq "$path/to/your/fastq/$numBarcode.fastq" \
         --title "${dateSeq}_${numBarcode}_QC" \
-        --outdir "$path/to/output/NANOPLOT_REPORT" \
+        --outdir "$path/to/output/nanoplot_report" \
         --maxlength 10000 \
         --plots dot
 ```
@@ -72,10 +72,10 @@ Selon la nature de certains prélèvements cliniques, on observe parfois une pop
 Base de données recommandée : [Human database](https://zenodo.org/records/8339700)
 
 ```bash
-kraken2 --threads "$nb_threads" --db "$Human_data_base" --confidence 0.1 \
-     --report "Report_Human_Depletion.txt" --use-names --output "Output.txt" \
-     --classified-out "Human_Reads.fasta" --unclassified-out "Unclassified.fastq" \
-     "$numBarcode.fastq"
+kraken2 --threads "$nb_threads" --db "$path/to/human_data_base" --confidence 0.1 \
+     --report "$path/to/output/report_human_depletion.txt" --use-names --output "$path/to/output.txt" \
+     --classified-out "$path/to/output/human_reads.fastq" --unclassified-out "$path/to/output/unclassified_reads.fastq" \
+     "$path/to/your/fastq/$numBarcode.fastq"
 ```
 Les *reads* non classifiés (`Unclassified_non_human.fastq`) correspondent aux séquences non humaines qui seront utilisées pour la suite de l'analyse.
 
@@ -84,7 +84,7 @@ Les *reads* non classifiés (`Unclassified_non_human.fastq`) correspondent aux s
 Utilisation de `porechop` pour supprimer les séquences d'adaptateurs résiduelles.
 
 ```bash
-porechop -i "Unclassified.fastq" -o "Unclassified_adapter_trim.fastq"
+porechop -i "$path/to/your/fastq/unclassified_reads.fastq" -o "$path/to/output/unclassified_reads_adapter_trim.fastq"
 ```
 
 ### Étape 4 : Filtrage sur la qualité & taille
@@ -92,8 +92,8 @@ porechop -i "Unclassified.fastq" -o "Unclassified_adapter_trim.fastq"
 La région étudiée mesure environ **2 700 pb**. Nous appliquons donc un filtrage par taille afin de conserver les reads compris entre 2 300 et 3 000 pb, des valeurs qui peuvent être ajustées si nécessaire.
 
 ```bash
-NanoFilt "Unclassified_adapter_trim.fastq" -q 15 --headcrop 10 --tailcrop 10 \
-         --length 2300 --maxlength 3000 > "$numBarcode.Q15.fastq"
+NanoFilt "$path/to/your/fastq/unclassified_reads_adapter_trim.fastq" -q 15 --headcrop 10 --tailcrop 10 \
+         --length 2300 --maxlength 3000 > "$path/to/output/$numBarcode.Q15.fastq"
 ```
 <img width="1315" height="495" alt="Capture d’écran 2026-02-11 201808" src="https://github.com/user-attachments/assets/41fb3b50-9e17-4b31-995e-071557099940" />
 
@@ -106,8 +106,8 @@ Un second passage via `NanoPlot` permet de vérifier le nombre de reads restants
 Pour réaliser l’assemblage, nous utilisons `Amplicon_sorter`, un outil développé pour trier les séquences selon leur similarité et leur longueur pour générer des contigs robustes.
 
 ```bash
-python3 amplicon_sorter.py -i "$numBarcode.Q15.fastq" -maxr 30000 -ldc 20 \
-        -sc $Base_Accuracy -o "amplicon_sorter_output" -np $nb_threads
+python3 amplicon_sorter.py -i "$path/to/your/fastq/$numBarcode.Q15.fastq" -maxr 30000 -ldc 20 \
+        -sc $base_Accuracy -o "$path/to/output_folder/amplicon_sorter_output" -np $nb_threads
 ```
 
 `-maxr` ou `--maxreads` :
@@ -123,9 +123,9 @@ Ce paramètre est ajusté en fonction de la qualité médiane des reads (Median 
 L’identification des séquences est réalisée à l’aide de l'outil `VSEARCH`, qui permet d’effectuer des recherches de similarité contre plusieurs bases de données.
 
 ```bash
-vsearch --usearch_global "$INPUT_FASTA" --db "${DIRS[ITS_DB]}" --id 0.98 \
+vsearch --usearch_global "$path/to/your/fasta/$input_contigs" --db "$path/to/$ITS_DB" --id 0.98 \
         --strand both --maxaccepts 1 --maxrejects 0 \
-        --userfields query+target+id+alnlen+qcov --blast6out "$VSEARCH_OUT"
+        --userfields query+target+id+alnlen+qcov --blast6out "$path/to/output/$VSEARCH_OUT"
 ```
 
 L'identification des espèces demeure l'un des défis majeurs en métagénomique fongique. Pour surmonter les limites des bases de données (références manquantes, taxonomie incomplète), nous adoptons une **approche d'identification multiple** en comparant nos consensus finaux à plusieurs bases de données de référence :
@@ -145,12 +145,12 @@ L'abondance de chaque espèce est estimée par le ré-alignement des reads initi
 
 ```bash
 # Alignement et conversion au format BAM
-minimap2 -ax map-ont -t 32 "$CONTIGS.fasta" "$READS.fastq" | \
+minimap2 -ax map-ont -t $nb_threads "$path/to/your/fasta/$input_contigs" "$path/to/your/fastq/$numBarcode.Q15.fastq" | \
 samtools sort -@ 32 -o "sorted.bam" -
 
 # Extraction des alignements primaires et statistiques
-samtools view -b -F 2304 -@ 32 "sorted.bam" > "primary.sorted.bam"
-samtools idxstats "primary.sorted.bam" > "abundance_table.txt"
+samtools view -b -F 2304 -@ $nb_threads "sorted.bam" > "primary.sorted.bam"
+samtools idxstats "primary.sorted.bam" > "$path/to/output/abundance_table.txt"
 ```
 Exemple :
 
