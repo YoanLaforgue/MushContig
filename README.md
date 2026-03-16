@@ -1,8 +1,8 @@
 # MushContig
 
 <div align="center">
-  <a href="[https://github.com/YoanLaforgue/MushContig/blob/main/logo_mushcontig.png]">
-    <img src="/logo_mushcontig.png" alt="MushContig" width="520"/>
+  <a href="[[https://github.com/YoanLaforgue/MushContig/blob/main/imgs/logo_mushcontig.png]">
+    <img src="/imgs/logo_mushcontig.png" alt="MushContig" width="520"/>
   </a>
   <br><br>
 </div>
