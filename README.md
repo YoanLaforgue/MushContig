@@ -22,6 +22,8 @@ Pour pallier ces limites, `MushContig` exploite la technologie long-read **(Oxfo
 *   **ITS (Internal Transcribed Spacer)** 
 *   **LSU (Large Subunit) rRNA** 
 
+Dans le cadre de ce projet, le laboratoire a développé une série de contrôles internes de qualité composée de sept souches fongiques. L'objectif était de concevoir un contrôle intégrant une diversité taxonomique ainsi que des abondances variables entre les différentes souches. Cet exercice s'est révélé particulièrement complexe, la fabrication artisanale du mélange pouvant entraîner de légères variations des abondances « relatives » d'un run de séquençage à l'autre. Les résultats obtenus lors des cinq premières analyses de séquençage sont présentés dans le document Poster_Microbes_2025.jpg.
+
 ---
 
 ## Prérequis
