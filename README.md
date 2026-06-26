@@ -183,6 +183,18 @@ La `communauté Nanopore` est particulièrement active et propose régulièremen
 
 ## Poster
 
-Concours au 20ᵉ congrès national de la Société Française de Microbiologie (SFM) qui se tiendra au Palais des Congrès de Bordeaux du 24 au 26 septembre 2025.
-
-<img width="350" height="500" alt="Capture-decran-2025-01-17-a-10 46 49-722x1024" src="https://github.com/user-attachments/assets/0331cde4-25a5-466d-b3c8-c1f00504c6c5" />
+<table border="0">
+  <tr>
+    <td width="40%" valign="top">
+      <a href="poster/Poster_Microbes_2025.jpg" target="_blank">
+        <img src="poster/Poster_Microbes_2025.jpg" alt="Poster Microbes 2025" style="border-radius: 6px; border: 1px solid #d0d7de;"/>
+      </a>
+    </td>
+    <td width="60%" valign="top">
+      <h2> Microbes 2025</h2>
+      <p> Ce projet a été présenté par M. Poidras Étienne lors du concours Microbes 2025, organisé dans le cadre du 20ᵉ Congrès national de la Société Française de Microbiologie (SFM), qui s'est tenu au Palais des Congrès de Bordeaux du 24 au 26 septembre 2025.</p>
+      <p> </p>
+      <p> <a href="poster/Poster_Microbes_2025.jpg" target="_blank">Voir le poster en haute résolution</a></p>
+    </td>
+  </tr>
+</table>
