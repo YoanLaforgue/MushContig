@@ -162,7 +162,7 @@ Exemple :
 <br>
 
 <div align="center">
-  <img src="imgs/rarefaction_curve.png" alt="rarefaction_curve" width="670"/>
+  <img src="imgs/rarefaction_curve.jpg" alt="rarefaction_curve" width="670"/>
   <br><br>
   </div>
 
